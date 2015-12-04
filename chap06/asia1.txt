@@ -1,0 +1,102 @@
+{	
+	"V": ["asia","tub","smoke","lung","bronc","either","xray","dysp"],
+	"E": [["asia", "tub"],
+		["tub", "either"],
+		["either", "xray"],
+		["either", "dysp"],
+		["bronc", "dysp"],
+		["smoke","bronc"],
+		["smoke","lung"],
+		["lung","either"]],
+	"Vdata": {
+		"dysp": {
+			"ord": 7,
+			"numoutcomes": 2,
+			"vals": ["yes", "no"],
+			"parents": ["bronc", "either"],
+			"children": None,
+			"cprob": {
+				"['yes', 'yes']": [.9,.1],
+				"['no', 'yes']": [.7, .3],
+				"['yes', 'no']": [.8, .2],
+				"['no', 'no']": [.1, .9]
+            }
+		},
+		"xray": {
+			"ord": 6,
+			"numoutcomes": 2,
+			"vals": ["yes", "no"],
+			"parents": ["either"],
+			"children": None,
+			"cprob": {
+				"['yes']": [.98, .02],
+				"['no']": [.05, .95]
+            }
+		},
+		"either": {
+			"ord": 5,
+			"numoutcomes": 2,
+			"vals": ["yes", "no"],
+			"parents": ["tub", "lung"],
+			"children": ["xray","dysp"],
+			"cprob": {
+				"['yes', 'yes']": [1, 0],
+				"['no', 'yes']": [1, 0],
+				"['yes', 'no']": [1, 0],
+				"['no', 'no']": [0, 1]
+            }
+		},
+		"bronc": {
+			"ord": 4,
+			"numoutcomes": 2,
+			"vals": ["yes", "no"],
+			"parents": ["smoke"],
+			"children": ["dysp"],
+			"cprob": {
+				"['yes']": [.6, .4],
+				"['no']": [.3, .7]
+            }
+		},
+		
+		"lung": {
+			"ord": 3,
+			"numoutcomes": 2,
+			"vals": ["yes", "no"],
+			"parents": ["smoke"],
+			"children": ["either","bronc"],
+			"cprob": {
+				"['yes']": [.1, .9],
+				"['no']": [.01, .99]
+            }
+		},
+		
+		"tub": {
+			"ord":2, 
+			"numoutcomes": 2,
+			"vals": ["yes", "no"],
+			"parents": ["asia"],
+			"children": ["either"],
+			"cprob": {
+				"['yes']": [.05, .95],
+				"['no']": [.01, .99]
+            }
+		},
+		"smoke": {
+			"ord": 1,
+			"numoutcomes": 2,
+			"vals": ["yes", "no"],
+			"parents": None,
+			"children": ["lung","bronc"],
+			"cprob":  [.5, .5]
+		},
+		
+		"asia": {
+			"ord": 0,
+			"numoutcomes": 2,
+			"vals": ["yes", "no"],
+			"parents": None,
+			"children": ["tub"],
+			"cprob":  [.01, .99]
+		}
+	}
+}

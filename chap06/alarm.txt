@@ -1,0 +1,64 @@
+{	
+	"V": ["marycalls", "johncalls", "alarm", "earthquake", "burglary"],
+	"E": [["earthquake", "alarm"],
+		["burglary", "alarm"],
+		["alarm", "marycalls"],
+		["alarm", "johncalls"]],
+	"Vdata": {
+		"marycalls": {
+			"ord": 4,
+			"numoutcomes": 2,
+			"vals": ["T", "F"],
+			"parents": ["alarm"],
+			"children": None,
+			"cprob": {
+				"['T']": [.7,.3],
+				"['F']": [.01, .99]
+			}
+		},
+		
+		"johncalls": {
+			"ord": 3,
+			"numoutcomes": 2,
+			"vals": ["T", "F"],
+			"parents": ["alarm"],
+			"children": None,
+			"cprob": {
+				"['T']": [.9,.1],
+				"['F']": [.05, .95]
+			}
+		},
+		
+		"alarm": {
+			"ord": 2,
+			"numoutcomes": 2,
+			"vals": ["T", "F"],
+			"parents": ["earthquake", "burglary"],
+			"children": ["johncalls","marycalls"],
+			"cprob": {
+				"['T', 'T']": [.95, .05],
+				"['T', 'F']": [.29, .71],
+                "['F', 'T']": [.94, .06],
+                "['F', 'F']": [.001, .999]
+            }
+		},
+		
+		"burglary": {
+			"ord": 1,
+			"numoutcomes": 2,
+			"vals": ["T", "F"],
+			"parents": None,
+			"children": ["alarm"],
+			"cprob": [.001, .999]
+		},
+		
+		"earthquake": {
+			"ord": 0,
+			"numoutcomes": 2,
+			"vals": ["T", "F"],
+			"parents": None,
+			"children": ["alarm"],
+			"cprob":  [.002, .998]
+		}
+	}
+}

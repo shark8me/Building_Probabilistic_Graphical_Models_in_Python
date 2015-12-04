@@ -1,0 +1,65 @@
+{	
+	"V": ["Offer", "Interview", "Grades", "Admission", "Experience"],
+	"E": [["Grades", "Interview"],
+		["Experience", "Interview"],
+		["Grades", "Admission"],
+		["Interview", "Offer"]],
+	"Vdata": {
+		"Offer": {
+			"ord": 4,
+			"numoutcomes": 2,
+			"vals": ["yes", "no"],
+			"parents": ["Interview"],
+			"children": None,
+			"cprob": {
+				"['poor']": [.9, .1],
+				"['average']": [.4, .6],
+				"['good']": [.01, .99]
+			}
+		},
+		
+		"Admission": {
+			"ord": 3,
+			"numoutcomes": 2,
+			"vals": ["admitted", "rejected"],
+			"parents": ["Grades"],
+			"children": None,
+			"cprob": {
+				"['poor']": [.7, .3],
+				"['good']": [.2, .8]
+			}
+		},
+		
+		"Interview": {
+			"ord": 2,
+			"numoutcomes": 3,
+			"vals": ["poor", "average", "good"],
+			"parents": ["Experience", "Grades"],
+			"children": ["Offer"],
+			"cprob": {
+				"['low', 'poor']": [.8, .18, .02],
+				"['low', 'good']": [.3, .6, .1],
+                "['high', 'poor']": [.3, .4, .3],
+                "['high', 'good']": [.1, .2, .7]
+            }
+		},
+		
+		"Grades": {
+			"ord": 1,
+			"numoutcomes": 2,
+			"vals": ["poor", "good"],
+			"parents": None,
+			"children": ["Admission", "Interview"],
+			"cprob": [.7, .3]
+		},
+		
+		"Experience": {
+			"ord": 0,
+			"numoutcomes": 2,
+			"vals": ["low", "high"],
+			"parents": None,
+			"children": ["Interview"],
+			"cprob":  [.6, .4]
+		}
+	}
+}
